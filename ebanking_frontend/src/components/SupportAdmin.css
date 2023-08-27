@@ -1,0 +1,84 @@
+.support {
+    width: 500px;
+    height: 320px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .support h2 {
+    font-size: 20px;
+    margin-bottom: 10px;
+  }
+  
+  .support-buttons {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .support-buttons button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+    margin: 0 5px;
+    cursor: pointer;
+    font-size: 14px; /* Adjust font size as needed */
+  }
+  
+  .support-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  
+  .support-table th,
+  .support-table td {
+    border: 1px solid #ccc;
+    padding: 8px;
+    text-align: center;
+  }
+  
+  .support-table th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+  }
+  
+  .support-table tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+  
+  .support-table tr:hover {
+    background-color: #ddd;
+  }
+  
+  .pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+  }
+  
+  .pagination-button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+    margin: 0 5px;
+    cursor: pointer;
+    font-size: 14px; /* Adjust font size as needed */
+  }
+  
+  .pagination-button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+  }
+
+  .question-btn{
+    width: 160px;
+    margin: 3px;
+  }
+  

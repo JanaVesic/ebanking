@@ -1,0 +1,25 @@
+.App{
+  display: flex;
+  height: 100vh;
+  color: rgb(117, 117, 117);
+    /* font-size: larger; */
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  align-items: center;
+  justify-content: center;
+}
+
+.page {
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Add this CSS to center the content within the page */
+.page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+

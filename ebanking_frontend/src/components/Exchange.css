@@ -1,0 +1,25 @@
+.exchange{
+    width: 250px;
+    background-color: #f2f2f2;
+    padding: 20px;
+    padding-right: 40px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+select{
+    width: 270px;
+}
+
+input{
+    width: 250px;
+}
+
+.button-container{
+    width: 250px;
+    height: 40px;
+    padding-top: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

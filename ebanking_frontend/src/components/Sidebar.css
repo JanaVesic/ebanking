@@ -1,0 +1,33 @@
+.sidebar {
+    background-color: #f0f0f0;
+    width: 200px;
+    flex-shrink: 0;
+    height: 100vh;
+  }
+
+.sidebar-btn{
+    width: 200px;
+    height: 40px;
+    background-color: transparent;
+    border: transparent;
+    color: rgb(117, 117, 117);
+    font-size: larger;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.sidebar-btn.active{
+    width: 200px;
+    height: 40px;
+    background-color: rgb(99, 180, 255);
+    border: transparent;
+    color: rgb(117, 117, 117);
+    font-size: larger;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.sidebar-btn:hover{
+    cursor: pointer;
+    background-color: rgb(99, 180, 255);
+    transition: 0.5s;
+    color: white;
+}
