@@ -10,5 +10,5 @@ import rs.ac.bg.fon.ebanking_backend.domain.Podrska;
 public interface PodrskaRepository extends JpaRepository<Podrska, Long> {
     Page<Podrska> findByRazresenoAndPodnosilac_Id(Boolean razreseno, Long id, Pageable pageable);
     Page<Podrska> findByRazreseno(Boolean razreseno, Pageable pageable);
-    Page<Podrska> findByPodnosilac_Id(Long id, Pageable pageable);
+    Page<Podrska> findByPodnosilacId(Long id, Pageable pageable);
 }

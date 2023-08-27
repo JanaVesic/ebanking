@@ -31,7 +31,7 @@ public class SecurityConfiguration {
                         .requestMatchers("/api/v1/auth/**").permitAll()
 
                         .requestMatchers(HttpMethod.POST, "/api/v1/podrska").hasAuthority(KORISNIK.getAuthority())
-                        .requestMatchers(HttpMethod.POST, "/api/v1/podrska/**/razresi").hasAuthority(ADMIN.getAuthority())
+                        .requestMatchers(HttpMethod.POST, "/api/v1/podrska/*/razresi").hasAuthority(ADMIN.getAuthority())
 
                         .anyRequest().authenticated())
                 .sessionManagement(httpSecuritySessionManagementConfigurer -> httpSecuritySessionManagementConfigurer.sessionCreationPolicy(SessionCreationPolicy.STATELESS))

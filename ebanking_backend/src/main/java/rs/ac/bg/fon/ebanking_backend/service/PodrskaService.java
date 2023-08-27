@@ -28,7 +28,7 @@ public class PodrskaService {
         if (trenutnoUlogovanaRola.equals(Role.ADMIN)) {
             return podrskaRepository.findAll(pageable);
         }
-        return podrskaRepository.findByPodnosilac_Id(trenutnoUlogovaniKorisnik.getId(), pageable);
+        return podrskaRepository.findByPodnosilacId(trenutnoUlogovaniKorisnik.getId(), pageable);
     }
 
     public Podrska getById(Long id) {

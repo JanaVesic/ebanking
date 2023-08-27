@@ -30,4 +30,12 @@ public class RacunController {
     public Trezor getTrezor() {
         return racunService.getTrezor();
     }
+
+    @PostMapping
+    public Racun napraviRacun(@RequestBody Racun racun){
+        return racunService.napraviRacun(racun);
+    }
+
+    @GetMapping("/trenutnoUlogovaniRacun")
+    public Racun getTrenutnoUlogovaniRacun() { return racunService.getTrenutnoUlogovani(); }
 }

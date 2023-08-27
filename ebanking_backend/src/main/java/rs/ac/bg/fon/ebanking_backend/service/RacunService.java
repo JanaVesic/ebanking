@@ -3,6 +3,7 @@ package rs.ac.bg.fon.ebanking_backend.service;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.stereotype.Service;
+import rs.ac.bg.fon.ebanking_backend.domain.Korisnik;
 import rs.ac.bg.fon.ebanking_backend.domain.Racun;
 import rs.ac.bg.fon.ebanking_backend.domain.Role;
 import rs.ac.bg.fon.ebanking_backend.domain.Trezor;
@@ -11,6 +12,7 @@ import rs.ac.bg.fon.ebanking_backend.repository.TrezorRepository;
 
 import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -36,10 +38,21 @@ public class RacunService {
     }
 
     public Racun getByKorisnik(Long korisnikId) {
-        return racunRepository.findByKorisnikId(korisnikId).orElseThrow(NoSuchElementException::new);
+        return racunRepository.findByVlasnikId(korisnikId).orElseThrow(NoSuchElementException::new);
     }
 
     public Trezor getTrezor() {
         return trezorRepository.findAll().get(0);
+    }
+
+    public Racun napraviRacun(Racun racun) {
+        Korisnik korisnik = korisnikService.getTrenutnoUlogovaniKorisnik();
+        racun.setVlasnik(korisnik);
+        return racunRepository.save(racun);
+    }
+
+    public Racun getTrenutnoUlogovani() {
+        Korisnik trenutnoUlogovaniKorisnik = korisnikService.getTrenutnoUlogovaniKorisnik();
+        return racunRepository.findByVlasnikId(trenutnoUlogovaniKorisnik.getId()).orElseThrow(NoSuchElementException::new);
     }
 }

@@ -51,8 +51,13 @@ public class TransakcijaService {
 
     public Transakcija izvrsiTransakciju(Transakcija transakcija) {
         transakcija.setVreme(LocalDateTime.now());
-        Korisnik posiljalac = korisnikService.getById(transakcija.getPosiljalac().getId());
-        Korisnik primalac = korisnikService.getById(transakcija.getPrimalac().getId());
+        Korisnik posiljalac = korisnikService.getTrenutnoUlogovaniKorisnik();
+        Korisnik primalac = null;
+        if (transakcija.getTipTransakcije().equals(TipTransakcije.PRENOS_NA_DRUGI_RACUN)) {
+            primalac = korisnikService.getById(transakcija.getPrimalac().getId());
+        } else {
+            primalac = korisnikService.getTrenutnoUlogovaniKorisnik();
+        }
 
         Racun racunPosiljaoca = racunService.getByKorisnik(posiljalac.getId());
         Racun racunPrimaoca = racunService.getByKorisnik(primalac.getId());

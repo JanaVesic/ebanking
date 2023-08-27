@@ -8,5 +8,5 @@ import java.util.Optional;
 
 @Repository
 public interface RacunRepository extends JpaRepository<Racun, Long> {
-    Optional<Racun> findByKorisnikId(Long id);
+    Optional<Racun> findByVlasnikId(Long id);
 }

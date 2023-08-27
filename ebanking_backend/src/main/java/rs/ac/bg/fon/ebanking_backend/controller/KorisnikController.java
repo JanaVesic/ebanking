@@ -25,4 +25,6 @@ public class KorisnikController {
         return korisnikService.getById(id);
     }
 
+    @GetMapping("/trenutnoUlogovaniKorisnik")
+    public Korisnik getTrenutnoUlogovaniKorisnik() { return korisnikService.getTrenutnoUlogovaniKorisnik(); }
 }
