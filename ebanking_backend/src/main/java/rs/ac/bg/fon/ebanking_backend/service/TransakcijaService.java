@@ -30,7 +30,9 @@ public class TransakcijaService {
         }
 
         Korisnik trenutnoUlogovaniKorisnik = korisnikService.getTrenutnoUlogovaniKorisnik();
-        return transakcijaRepository.findByPosiljalac_IdOrPrimalac_Id(trenutnoUlogovaniKorisnik.getId(), trenutnoUlogovaniKorisnik.getId(), pageable);
+        Racun trenutnoUlogovaniRacun = racunService.getTrenutnoUlogovani();
+
+        return transakcijaRepository.findByPosiljalac_IdOrPrimalac_Id(trenutnoUlogovaniRacun.getId(), trenutnoUlogovaniRacun.getId(), pageable);
     }
 
     public Transakcija getById(Long id) {
@@ -70,6 +72,9 @@ public class TransakcijaService {
         Racun trezor = racunRepository.findByVlasnikId(admin.getId()).orElseThrow(NoSuchElementException::new);
 
         trezor.uplati(provizija);
+
+        transakcija.setPrimalac(racunPrimaoca);
+        transakcija.setPosiljalac(racunPosiljaoca);
 
         racunRepository.save(trezor);
 

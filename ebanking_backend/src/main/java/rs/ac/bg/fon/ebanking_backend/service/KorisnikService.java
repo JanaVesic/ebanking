@@ -25,7 +25,11 @@ public class KorisnikService {
     }
 
     public List<Korisnik> getAll() {
-        return korisnikRepository.findAll();
+        return korisnikRepository.findAll()
+                .stream()
+                .filter(korisnik -> !korisnik.equals(getAdministrator()))
+                .filter(korisnik -> !korisnik.equals(getTrenutnoUlogovaniKorisnik()))
+                .toList();
     }
 
     public Korisnik getById(Long id) {
