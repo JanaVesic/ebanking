@@ -3,7 +3,6 @@ package rs.ac.bg.fon.ebanking_backend.controller;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import rs.ac.bg.fon.ebanking_backend.domain.Racun;
-import rs.ac.bg.fon.ebanking_backend.domain.Trezor;
 import rs.ac.bg.fon.ebanking_backend.service.RacunService;
 
 import java.util.List;
@@ -27,7 +26,7 @@ public class RacunController {
     }
 
     @GetMapping("/trezor")
-    public Trezor getTrezor() {
+    public Racun getTrezor() {
         return racunService.getTrezor();
     }
 

@@ -31,4 +31,8 @@ public class KorisnikService {
     public Korisnik getById(Long id) {
         return korisnikRepository.findById(id).orElseThrow(NoSuchElementException::new);
     }
+
+    public Korisnik getAdministrator() {
+        return korisnikRepository.findByRole(Role.ADMIN);
+    }
 }

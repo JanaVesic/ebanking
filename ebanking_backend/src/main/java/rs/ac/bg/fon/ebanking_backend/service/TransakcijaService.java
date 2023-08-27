@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 import rs.ac.bg.fon.ebanking_backend.domain.*;
 import rs.ac.bg.fon.ebanking_backend.repository.RacunRepository;
 import rs.ac.bg.fon.ebanking_backend.repository.TransakcijaRepository;
-import rs.ac.bg.fon.ebanking_backend.repository.TrezorRepository;
 
 import java.time.LocalDateTime;
 import java.util.NoSuchElementException;
@@ -22,7 +21,6 @@ public class TransakcijaService {
     private final TransakcijaRepository transakcijaRepository;
     private final KorisnikService korisnikService;
     private final RacunService racunService;
-    private final TrezorRepository trezorRepository;
     private final RacunRepository racunRepository;
 
     public Page<Transakcija> getAll(Pageable pageable) {
@@ -68,11 +66,12 @@ public class TransakcijaService {
         racunPosiljaoca.isplati(transakcija.getIznos());
         racunPosiljaoca.isplati(provizija);
 
-        Trezor trezor = trezorRepository.findAll().get(0);
+        Korisnik admin = korisnikService.getAdministrator();
+        Racun trezor = racunRepository.findByVlasnikId(admin.getId()).orElseThrow(NoSuchElementException::new);
 
         trezor.uplati(provizija);
 
-        trezorRepository.save(trezor);
+        racunRepository.save(trezor);
 
         racunRepository.save(racunPosiljaoca);
         racunRepository.save(racunPrimaoca);

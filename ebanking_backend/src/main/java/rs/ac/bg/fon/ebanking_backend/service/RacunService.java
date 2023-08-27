@@ -6,13 +6,10 @@ import org.springframework.stereotype.Service;
 import rs.ac.bg.fon.ebanking_backend.domain.Korisnik;
 import rs.ac.bg.fon.ebanking_backend.domain.Racun;
 import rs.ac.bg.fon.ebanking_backend.domain.Role;
-import rs.ac.bg.fon.ebanking_backend.domain.Trezor;
 import rs.ac.bg.fon.ebanking_backend.repository.RacunRepository;
-import rs.ac.bg.fon.ebanking_backend.repository.TrezorRepository;
 
 import java.util.List;
 import java.util.NoSuchElementException;
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -20,7 +17,6 @@ public class RacunService {
 
     private final RacunRepository racunRepository;
     private final KorisnikService korisnikService;
-    private final TrezorRepository trezorRepository;
 
     public List<Racun> getAll() {
         if (korisnikService.getTrenutnoUlogovanuRolu().equals(Role.KORISNIK)) {
@@ -41,8 +37,9 @@ public class RacunService {
         return racunRepository.findByVlasnikId(korisnikId).orElseThrow(NoSuchElementException::new);
     }
 
-    public Trezor getTrezor() {
-        return trezorRepository.findAll().get(0);
+    public Racun getTrezor() {
+        Korisnik admin = korisnikService.getAdministrator();
+        return racunRepository.findByVlasnikId(admin.getId()).orElseThrow(NoSuchElementException::new);
     }
 
     public Racun napraviRacun(Racun racun) {
