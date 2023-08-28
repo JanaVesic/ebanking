@@ -5,7 +5,10 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.stereotype.Service;
-import rs.ac.bg.fon.ebanking_backend.domain.*;
+import rs.ac.bg.fon.ebanking_backend.domain.Korisnik;
+import rs.ac.bg.fon.ebanking_backend.domain.Racun;
+import rs.ac.bg.fon.ebanking_backend.domain.Role;
+import rs.ac.bg.fon.ebanking_backend.domain.Transakcija;
 import rs.ac.bg.fon.ebanking_backend.repository.RacunRepository;
 import rs.ac.bg.fon.ebanking_backend.repository.TransakcijaRepository;
 
@@ -29,10 +32,9 @@ public class TransakcijaService {
             return transakcijaRepository.findAll(pageable);
         }
 
-        Korisnik trenutnoUlogovaniKorisnik = korisnikService.getTrenutnoUlogovaniKorisnik();
         Racun trenutnoUlogovaniRacun = racunService.getTrenutnoUlogovani();
 
-        return transakcijaRepository.findByPosiljalac_IdOrPrimalac_Id(trenutnoUlogovaniRacun.getId(), trenutnoUlogovaniRacun.getId(), pageable);
+        return transakcijaRepository.findByPosiljalacIdOrPrimalacId(trenutnoUlogovaniRacun.getId(), trenutnoUlogovaniRacun.getId(), pageable);
     }
 
     public Transakcija getById(Long id) {
@@ -50,19 +52,54 @@ public class TransakcijaService {
     }
 
     public Transakcija izvrsiTransakciju(Transakcija transakcija) {
-        transakcija.setVreme(LocalDateTime.now());
-        Korisnik posiljalac = korisnikService.getTrenutnoUlogovaniKorisnik();
-        Korisnik primalac = null;
-        if (transakcija.getTipTransakcije().equals(TipTransakcije.PRENOS_NA_DRUGI_RACUN)) {
-            primalac = korisnikService.getById(transakcija.getPrimalac().getId());
-        } else {
-            primalac = korisnikService.getTrenutnoUlogovaniKorisnik();
-        }
+        return switch (transakcija.getTipTransakcije()) {
+            case PRENOS_NA_DRUGI_RACUN -> prenosNaDrugiRacun(transakcija);
+            case UPLATA_NA_RACUN -> uplataNaRacun(transakcija);
+            case ISPLATA_SA_RACUNA -> isplataSaRacuna(transakcija);
+        };
+    }
 
+    private Transakcija isplataSaRacuna(Transakcija transakcija) {
+        transakcija.setVreme(LocalDateTime.now());
+
+        Racun racun = racunService.getTrenutnoUlogovani();
+        Integer provizija = Math.toIntExact(Math.round(transakcija.getIznos() * PROCENAT_PROVIZIJE));
+        if (transakcija.getIznos() + provizija > racun.getStanje()) {
+            throw new IllegalStateException("Nedovoljno novca na racunu");
+        }
+        racun.isplati(transakcija.getIznos());
+        racun.isplati(provizija);
+
+        Korisnik admin = korisnikService.getAdministrator();
+        Racun trezor = racunRepository.findByVlasnikId(admin.getId()).orElseThrow(NoSuchElementException::new);
+        trezor.uplati(provizija);
+
+        racunRepository.save(trezor);
+        racunRepository.save(racun);
+        return transakcijaRepository.save(transakcija);
+    }
+
+    private Transakcija uplataNaRacun(Transakcija transakcija) {
+        transakcija.setVreme(LocalDateTime.now());
+
+        Racun racun = racunService.getTrenutnoUlogovani();
+        racun.uplati(transakcija.getIznos());
+        racunRepository.save(racun);
+        return transakcijaRepository.save(transakcija);
+    }
+
+    private Transakcija prenosNaDrugiRacun(Transakcija transakcija) {
+        Korisnik posiljalac = korisnikService.getTrenutnoUlogovaniKorisnik();
         Racun racunPosiljaoca = racunService.getByKorisnik(posiljalac.getId());
+
+        Korisnik primalac = korisnikService.getById(transakcija.getPrimalac().getId());
         Racun racunPrimaoca = racunService.getByKorisnik(primalac.getId());
 
         Integer provizija = Math.toIntExact(Math.round(transakcija.getIznos() * PROCENAT_PROVIZIJE));
+
+        if (transakcija.getIznos() + provizija > racunPosiljaoca.getStanje()) {
+            throw new IllegalStateException("Nedovoljno novca na racunu");
+        }
 
         racunPrimaoca.uplati(transakcija.getIznos());
         racunPosiljaoca.isplati(transakcija.getIznos());

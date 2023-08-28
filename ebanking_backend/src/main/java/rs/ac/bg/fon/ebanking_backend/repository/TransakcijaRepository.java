@@ -8,5 +8,5 @@ import rs.ac.bg.fon.ebanking_backend.domain.Transakcija;
 
 @Repository
 public interface TransakcijaRepository extends JpaRepository<Transakcija, Long> {
-    Page<Transakcija> findByPosiljalac_IdOrPrimalac_Id(Long id, Long id1, Pageable pageable);
+    Page<Transakcija> findByPosiljalacIdOrPrimalacId(Long id, Long id1, Pageable pageable);
 }
