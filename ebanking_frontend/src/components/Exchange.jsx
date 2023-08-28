@@ -48,9 +48,9 @@ const Exchange = () => {
 
   return (
     <div className="exchange">
-      <h2>Currency Exchange</h2>
+      <h2>Menjačnica</h2>
       <div>
-        <label htmlFor="value">Value:</label>
+        <label htmlFor="value">Iznos:</label>
         <input
           type="number"
           id="value"
@@ -59,7 +59,7 @@ const Exchange = () => {
         />
       </div>
       <div>
-        <label htmlFor="baseCurrency">Base Currency:</label>
+        <label htmlFor="baseCurrency">Iz valute:</label>
         <select
           id="baseCurrency"
           value={baseCurrency}
@@ -67,11 +67,11 @@ const Exchange = () => {
         >
           <option value="USD">USD</option>
           <option value="EUR">EUR</option>
-          {/* Add other currency options here */}
+          
         </select>
       </div>
       <div>
-        <label htmlFor="targetCurrency">Target Currency:</label>
+        <label htmlFor="targetCurrency">U valutu:</label>
         <select
           id="targetCurrency"
           value={targetCurrency}
@@ -79,15 +79,15 @@ const Exchange = () => {
         >
           <option value="EUR">EUR</option>
           <option value="USD">USD</option>
-          {/* Add other currency options here */}
+          
         </select>
       </div>
       <div className="button-container">
-        <button onClick={handleConvert}>Convert</button>
+        <button onClick={handleConvert}>Razmeni</button>
       </div>
       {convertedValue && (
         <p>
-          Converted Value: {value} {baseCurrency} = {convertedValue}{' '}
+          {value} {baseCurrency} = {convertedValue}{' '}
           {targetCurrency}
         </p>
       )}

@@ -19,12 +19,9 @@ const CreateAccount = () => {
           }).then((response) => {
             console.log(response);
             navigate('/account');
-            // localStorage.setItem('isAdmin', response.data.isAdmin);
-            // window.location.href = "/Obavestenja";
       
           }, (error) => {
             console.log(error);
-            // setPoruka("Neispravno korisnicko ime ili sifra!");
           })
     }
     return ( 

@@ -30,16 +30,16 @@ const Support = () => {
 
   return (
     <div className="support-box">
-      <h2>Support Request</h2>
+      <h2>Podrška</h2>
         <div className='support-input'>
-          <label htmlFor="message">Message:</label>
+          <label htmlFor="message">Pitanje:</label>
           <textarea
             id="message"
             value={message}
             onChange={handleMessageChange}
           ></textarea>
         </div>
-        <button onClick={() => send()}>Submit</button>
+        <button onClick={() => send()}>Pošalji</button>
     </div>
   );
 };

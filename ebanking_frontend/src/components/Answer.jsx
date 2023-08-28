@@ -40,9 +40,9 @@ const Answer = ({ question, setAnswerToggle }) => {
         rows="5"
         value={answer}
         onChange={handleAnswerChange}
-        placeholder="Enter your answer here..."
+        placeholder="Unesi odgovor..."
       />
-      <button onClick={() => handleAnswerSubmit()}>Submit Answer</button>
+      <button onClick={() => handleAnswerSubmit()}>Pošalji odgovor</button>
     </div>
   );
 };

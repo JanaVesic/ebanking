@@ -81,9 +81,9 @@ const Transfer = () => {
 
   return (
     <div className="transfer">
-      <h2>Transfer Money</h2>
+      <h2>Transakcija</h2>
       <div>
-        <label htmlFor="transactionType">Transaction Type:</label>
+        <label htmlFor="transactionType">Tip transakcije:</label>
         <select
           id="transactionType"
           value={transactionType}
@@ -96,13 +96,13 @@ const Transfer = () => {
       </div>
       {transactionType === 'PRENOS_NA_DRUGI_RACUN' && (
         <div>
-          <label htmlFor="recipient">Recipient:</label>
+          <label htmlFor="recipient">Primalac:</label>
           <select
             id="recipient"
             value={recipientId}
             onChange={(event) => setRecipientId(event.target.value)}
           >
-            <option value="">Select a recipient</option>
+            <option value="">Izaberi primaoca</option>
             {users.map((user) => (
               <option key={user.id} value={user.id}>
                 {user.username}
@@ -112,7 +112,7 @@ const Transfer = () => {
         </div>
       )}
       <div>
-        <label htmlFor="amount">Amount:</label>
+        <label htmlFor="amount">Iznos:</label>
         <input
           type="number"
           id="amount"
@@ -120,7 +120,7 @@ const Transfer = () => {
           onChange={(event) => setAmount(event.target.value)}
         />
       </div>
-      <button onClick={() => transfer()}>Transfer</button>
+      <button onClick={() => transfer()}>Izvrši transakciju</button>
     </div>
   );
 };

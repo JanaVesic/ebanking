@@ -15,24 +15,11 @@ const Login = ({ setIsLoggedIn, setRole }) => {
   }, [])
 
   const login = () => {
-    // event.preventDefault();
-
-    // Create a data object containing the user's information
     const userData = {
       username,
       password
     };
 
-    // Make the POST request using Axios
-    // axios.post('http://localhost:8080/api/v1/auth/register', userData)
-    //   .then((response) => {
-    //     // Handle the successful response here, such as displaying a success message or redirecting to another page
-    //     console.log('Registration successful!', response.data);
-    //   })
-    //   .catch((error) => {
-    //     // Handle errors here, such as displaying an error message
-    //     console.error('Registration failed:', error);
-    //   });
     axios({
       method: 'post',
       url: '/api/v1/auth/login',
@@ -41,13 +28,10 @@ const Login = ({ setIsLoggedIn, setRole }) => {
     }).then((response) => {
       console.log(response);
       
-      // localStorage.setItem('isAdmin', response.data.isAdmin);
-      // window.location.href = "/Obavestenja";
       localStorage.setItem('token', response.data.token)
       setIsLoggedIn(true)
       setRole(response.data.role)
       localStorage.setItem('role', response.data.role)
-      // alert(response.data.role)
       navigate('/account')
     }, (error) => {
       console.log(error);

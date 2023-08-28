@@ -27,11 +27,11 @@ const Sidebar = ({ isLoggedIn }) => {
         <Link to={'/'}><h2>Banka</h2></Link>
         <Link to={'/mainPage'}><button className={`sidebar-btn ${selectedLink === '/mainPage' ? 'active' : ''}`}>Početna strana</button></Link>
         <Link to={'/account'}><button className={`sidebar-btn ${selectedLink === '/account' ? 'active' : ''}`}>Moji računi</button></Link>
-        {role==="ADMIN" && <>
+        {localStorage.getItem('role')==="ADMIN" && <>
           <Link to={'/supportAdmin'}><button className={`sidebar-btn ${selectedLink === '/supportAdmin' ? 'active' : ''}`}>Podrška Admin</button></Link>
           <Link to={'/analytics'}><button className={`sidebar-btn ${selectedLink === '/analytics' ? 'active' : ''}`}>Podaci</button></Link>
         </>}
-        {role==="KORISNIK" && <>
+        {localStorage.getItem('role')==="KORISNIK" && <>
           <Link to={'/transfer'}><button className={`sidebar-btn ${selectedLink === '/transfer' ? 'active' : ''}`}>Plaćanja</button></Link>
           <Link to={'/exchange'}><button className={`sidebar-btn ${selectedLink === '/exchange' ? 'active' : ''}`}>Menjačnica</button></Link>
           <Link to={'/support'}><button className={`sidebar-btn ${selectedLink === '/support' ? 'active' : ''}`}>Postavi pitanje</button></Link>

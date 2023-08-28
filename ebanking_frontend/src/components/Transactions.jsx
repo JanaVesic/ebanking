@@ -48,23 +48,23 @@ const Transactions = () => {
           disabled={currentPage === 0}
           className="pagination-button"
         >
-          Previous
+          Prethodni
         </button>
         <button
           onClick={nextPage}
           disabled={currentPage === totalPages - 1}
           className="pagination-button"
         >
-          Next
+          Dalje
         </button>
       </div>
       <table className="transaction-table">
         <thead>
           <tr>
-            <th>Sender</th>
-            <th>Receiver</th>
-            <th>Amount</th>
-            <th>Time</th>
+            <th>Posiljalac</th>
+            <th>Primalac</th>
+            <th>Iznos</th>
+            <th>Vreme</th>
           </tr>
         </thead>
         <tbody>

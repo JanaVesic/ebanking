@@ -21,22 +21,6 @@ const Account = () => {
     };
     fetchData();
   }, []);
-  // Pretpostavljamo da imate pristup podacima korisnika i kreditne kartice. Ažurirajte sledeće sa odgovarajućim informacijama
-  // const user = {
-  //   name: 'John Doe', // Ime i prezime korisnika
-  //   address: '123 Main Street', // Adresa korisnika
-  //   email: 'johndoe@example.com', // Email adresa korisnika
-  //   phoneNumber: '123-456-7890', // Broj telefona korisnika
-  //   accountBalance: 5000.0, // Stanje na računu korisnika
-  //   // Dodajte ostale relevantne informacije o korisniku ovde
-  // };
-
-  // const creditCard = {
-  //   cardNumber: '**** **** **** 1234', // Broj kreditne kartice
-  //   expirationDate: '12/25', // Datum isteka kreditne kartice
-  //   cvv: '123', // CVV koda kreditne kartice
-  //   // Dodajte ostale relevantne informacije o kreditnoj kartici ovde
-  // };
 
   return (
     <div className="account">

@@ -10,13 +10,10 @@ const Register = () => {
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [role, setRole] = useState('KORISNIK'); // Default role is 'USER'
+  const [role, setRole] = useState('KORISNIK');
 
   const roles = ['KORISNIK', 'ADMIN'];
   const register = () => {
-    // event.preventDefault();
-
-    // Create a data object containing the user's information
     const userData = {
       ime,
       prezime,
@@ -26,16 +23,6 @@ const Register = () => {
       role
     };
 
-    // Make the POST request using Axios
-    // axios.post('http://localhost:8080/api/v1/auth/register', userData)
-    //   .then((response) => {
-    //     // Handle the successful response here, such as displaying a success message or redirecting to another page
-    //     console.log('Registration successful!', response.data);
-    //   })
-    //   .catch((error) => {
-    //     // Handle errors here, such as displaying an error message
-    //     console.error('Registration failed:', error);
-    //   });
     axios({
       method: 'post',
       url: '/api/v1/auth/register',
@@ -45,8 +32,6 @@ const Register = () => {
       console.log(response);
       localStorage.setItem('token', response.data.token);
       
-      // localStorage.setItem('isAdmin', response.data.isAdmin);
-      // window.location.href = "/Obavestenja";
       localStorage.setItem('token', response.data.token)
       navigate('/createAccount')
     }, (error) => {

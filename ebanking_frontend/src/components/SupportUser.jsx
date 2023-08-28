@@ -56,21 +56,21 @@ const previousPage = () => {
                     disabled={currentPage === 0}
                     className="pagination-button"
                 >
-                    Previous
+                    Prethodna
                 </button>
                 <button
                     onClick={nextPage}
                     disabled={currentPage === totalPages - 1}
                     className="pagination-button"
                 >
-                    Next
+                    Dalje
                 </button>
             </div>
-        <h2>Support Questions</h2>
+        <h2>Podrška</h2>
         <div>
-          <button className='question-btn' onClick={() => setQuestionFilter('all')}>All Questions</button>
-          <button className='question-btn' onClick={() => setQuestionFilter('solved')}>Solved</button>
-          <button className='question-btn' onClick={() => setQuestionFilter('unsolved')}>Unsolved</button>
+          <button className='question-btn' onClick={() => setQuestionFilter('all')}>Sva pitanja</button>
+          <button className='question-btn' onClick={() => setQuestionFilter('solved')}>Rešena</button>
+          <button className='question-btn' onClick={() => setQuestionFilter('unsolved')}>Nerešena</button>
         </div>
         {answerToggle ? (
           <table style={{ width: '500px' }}>

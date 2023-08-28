@@ -7,7 +7,7 @@ const SupportAdmin = () => {
   const [questions, setQuestions] = useState([]);
   const [answerToggle, setAnswerToggle] = useState(true);
   const [currentQuestion, setCurrentQuestion] = useState();
-  const [questionFilter, setQuestionFilter] = useState('all'); // Default filter
+  const [questionFilter, setQuestionFilter] = useState('all');
   const [currentPage, setCurrentPage] = useState(0)
   const [totalPages, setTotalPages] = useState();
 
@@ -37,7 +37,7 @@ const SupportAdmin = () => {
       }
     };
     fetchData();
-  }, [questionFilter, currentPage]); // Trigger the effect when questionFilter changes
+  }, [questionFilter, currentPage]);
 
   const answerQuestion = (question) => {
     setCurrentQuestion(question);
@@ -61,21 +61,21 @@ const previousPage = () => {
                     disabled={currentPage === 0}
                     className="pagination-button"
                 >
-                    Previous
+                    Prethodna
                 </button>
                 <button
                     onClick={nextPage}
                     disabled={currentPage === totalPages - 1}
                     className="pagination-button"
                 >
-                    Next
+                    Dalje
                 </button>
             </div>
-        <h2>Support Questions</h2>
+        <h2>Podrška</h2>
         <div>
-          <button className='question-btn' onClick={() => setQuestionFilter('all')}>All Questions</button>
-          <button className='question-btn' onClick={() => setQuestionFilter('solved')}>Solved</button>
-          <button className='question-btn' onClick={() => setQuestionFilter('unsolved')}>Unsolved</button>
+          <button className='question-btn' onClick={() => setQuestionFilter('all')}>Sva pitanja</button>
+          <button className='question-btn' onClick={() => setQuestionFilter('solved')}>Rešena</button>
+          <button className='question-btn' onClick={() => setQuestionFilter('unsolved')}>Nerešena</button>
         </div>
         {answerToggle ? (
           <table style={{ width: '500px' }}>
@@ -98,7 +98,7 @@ const previousPage = () => {
                     {question.odgovor !== null ? (
                       <>{question.odgovor}</>
                     ) : (
-                      <button onClick={() => answerQuestion(question)}>Answer</button>
+                      <button onClick={() => answerQuestion(question)}>Odgovori</button>
                     )}
                   </td>
                   <td>{question.odgovor !== null ? <>{question.vremeOdgovora}</> : <>/</>}</td>

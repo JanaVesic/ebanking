@@ -42,13 +42,13 @@ const Analytics = () => {
           },
         });
         setAccounts(response.data);
-        // Create chart data using account data
+        
         const data = {
-          labels: response.data.map(account => account.vlasnik.username), // Use account IDs as labels
+          labels: response.data.map(account => account.vlasnik.username),
           datasets: [
             {
               label: 'Stanje na računu',
-              data: response.data.map(account => account.stanje), // Use account balances as data
+              data: response.data.map(account => account.stanje),
               backgroundColor: 'rgba(54, 162, 235, 0.2)',
               borderColor: 'rgba(54, 162, 235, 1)',
               borderWidth: 1,
@@ -61,7 +61,7 @@ const Analytics = () => {
         console.error('Fetching accounts failed:', error);
       }
     };
-    // Inside the fetchTransactions function
+    
 const fetchTransactions = async () => {
   try {
     const response = await axios.get('http://localhost:8080/api/v1/transakcije', {
@@ -71,16 +71,14 @@ const fetchTransactions = async () => {
     });
     setTransactions(response.data.content);
     
-    // Get the last 5 transactions for the chart
     const last5Transactions = response.data.content.slice(-5);
     
-    // Create chart data using transaction data
     const data = {
-      labels: last5Transactions.map(transaction => transaction.vreme), // Use transaction IDs as labels
+      labels: last5Transactions.map(transaction => transaction.vreme),
       datasets: [
         {
           label: 'Uplate na racun',
-          data: last5Transactions.map(transaction => transaction.iznos), // Use transaction balances as data
+          data: last5Transactions.map(transaction => transaction.iznos),
           backgroundColor: 'rgba(54, 162, 235, 0.2)',
           borderColor: 'rgba(54, 162, 235, 1)',
           borderWidth: 1,
@@ -102,13 +100,13 @@ const fetchTransactions = async () => {
     <div className="analytics">
       <div className="bar">
         <div className="box">
-          <h1 style={{ color: '#007bff' }}>Account Balances</h1>
+          <h1 style={{ color: '#007bff' }}>Računi korisnika</h1>
           {chartData && accounts.length > 0 && <Bar data={chartData} />}
         </div>
       </div>
       <div className="line">
         <div className="box">
-          <h1 style={{ color: '#007bff' }}>Transactions Trend</h1>
+          <h1 style={{ color: '#007bff' }}>Trend transakcija</h1>
           {chartData2 && transactions.length > 0 && (
             <Line
               data={chartData2}
@@ -125,7 +123,7 @@ const fetchTransactions = async () => {
                     display: true,
                     title: {
                       display: true,
-                      text: 'Transaction Balances',
+                      text: 'Iznos',
                     },
                   },
                 },
