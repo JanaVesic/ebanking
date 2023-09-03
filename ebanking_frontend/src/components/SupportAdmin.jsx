@@ -32,6 +32,7 @@ const SupportAdmin = () => {
         });
         setTotalPages(response.data.totalPages);
         setQuestions(response.data.content);
+        console.log(response.data)
       } catch (error) {
         console.error('Fetching questions failed:', error);
       }
@@ -107,7 +108,7 @@ const previousPage = () => {
             </tbody>
           </table>
         ) : (
-          <Answer question={currentQuestion} setAnswerToggle={setAnswerToggle} />
+          <Answer currentQuestion={currentQuestion} setAnswerToggle={setAnswerToggle} />
         )}
       </div>
     </>

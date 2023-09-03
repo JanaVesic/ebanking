@@ -5,6 +5,7 @@ import axios from "axios";
 
 const CreateAccount = () => {
     const [stanje, setStanje] = useState(0);
+    const [poruka, setPoruka] = useState('');
     const navigate = useNavigate();
     function createAccount(){
         axios({
@@ -28,6 +29,7 @@ const CreateAccount = () => {
         <div className="create-account">
             <input type="number" name="" id="racun" onChange={(event) => setStanje(event.target.value)}/>
             <button onClick={() => createAccount()}>Otvori racun</button>
+            <p style={{color: 'red'}}>{poruka}</p>
         </div>
      );
 }

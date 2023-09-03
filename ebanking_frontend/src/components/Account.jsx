@@ -13,7 +13,6 @@ const Account = () => {
           },
         });
         setData(response.data);
-        // console.log(response.data)
       } catch (error) {
         console.error('Login failed:', error);
         throw error;

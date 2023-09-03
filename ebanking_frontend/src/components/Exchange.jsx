@@ -24,6 +24,39 @@ const Exchange = () => {
     fetchExchangeRate();
   }, [baseCurrency, targetCurrency]);
 
+//   useEffect(() => {
+//     const apiKey = 'fef0e7be-e907-4cba-b396-bff6924c360e';
+// // const apiUrl = 'https://pro-api.coinmarketcap.com/v1/cryptocurrency/quotes/latest';
+// const apiUrl = 'https://sandbox-api.coinmarketcap.com/v1/cryptocurrency/listings/latest';
+
+// const cryptoSymbol = 'BTC';
+
+// const parameters = {
+//   symbol: cryptoSymbol,
+// };
+
+// const headers = {
+//   'X-CMC_PRO_API_KEY': apiKey,
+// };
+
+// axios
+//   .get(apiUrl, {
+//     // params: parameters,
+//     headers: headers,
+//   })
+//   .then((response) => {
+//     const bitcoinData = response.data.data[cryptoSymbol];
+//     const bitcoinPrice = bitcoinData.quote.USD.price;
+//     console.log(`Bitcoin (BTC) Price: $${bitcoinPrice}`);
+//   })
+//   .catch((error) => {
+//     console.error('Error:', error);
+//   });
+//   }, [])
+
+
+
+
   const handleValueChange = (event) => {
     setValue(event.target.value);
   };

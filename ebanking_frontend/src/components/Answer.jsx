@@ -2,7 +2,7 @@ import axios from 'axios';
 import React, { useState } from 'react';
 
 
-const Answer = ({ question, setAnswerToggle }) => {
+const Answer = ({ currentQuestion, setAnswerToggle }) => {
   const [answer, setAnswer] = useState('');
 
   const handleAnswerChange = (event) => {
@@ -17,9 +17,9 @@ const Answer = ({ question, setAnswerToggle }) => {
         },
       };
 
-      axios.post('http://localhost:8080/api/v1/podrska/' + question.id + '/razresi', {
+      axios.post('http://localhost:8080/api/v1/podrska/' + currentQuestion.id + '/razresi', {
         odgovor: answer,
-        id: question.id
+        id: currentQuestion.id
       }, config)
         .then((response) => {
           console.log('Transfer successful!', response.data);
@@ -31,8 +31,7 @@ const Answer = ({ question, setAnswerToggle }) => {
 
   return (
     <div className="answer">
-      <h3>Question Subject: {question.subject}</h3>
-      <p>Question Content: {question.content}</p>
+      <p>Pitanje: {currentQuestion.pitanje}</p>
       <textarea
         name="answer"
         id="answer"

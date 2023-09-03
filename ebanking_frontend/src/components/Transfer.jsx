@@ -7,6 +7,7 @@ const Transfer = () => {
   const [recipientId, setRecipientId] = useState('');
   const [amount, setAmount] = useState('');
   const [transactionType, setTransactionType] = useState('UPLATA_NA_RACUN');
+  const [poruka, setPoruka] = useState('')
 
   useEffect(() => {
     const fetchData = async () => {
@@ -31,7 +32,6 @@ const Transfer = () => {
   };
 
   const transfer = () => {
-    // alert(recipientId)
     if (transactionType === 'PRENOS_NA_DRUGI_RACUN') {
       const transferData = {
         tipTransakcije: transactionType,
@@ -39,7 +39,6 @@ const Transfer = () => {
         primalac: {
           id: recipientId
         },
-        // Add other properties specific to this transaction type
       };
 
       const token = localStorage.getItem('token');
@@ -55,6 +54,7 @@ const Transfer = () => {
         })
         .catch((error) => {
           console.error('Transfer failed:', error);
+          setPoruka(error.response.data.body.detail)
         });
     } else {
       const transferData = {
@@ -121,6 +121,7 @@ const Transfer = () => {
         />
       </div>
       <button onClick={() => transfer()}>Izvrši transakciju</button>
+      <p style={{color: 'red'}}>{poruka}</p>
     </div>
   );
 };

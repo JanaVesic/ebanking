@@ -28,7 +28,7 @@ function App() {
       setRole(localStorage.getItem('role'))
     }
     else setIsLoggedIn(false);
-  }, localStorage.getItem('token'), localStorage.getItem('role'))
+  }, [localStorage.getItem('token'), localStorage.getItem('role')])
 
   return (
     <BrowserRouter>

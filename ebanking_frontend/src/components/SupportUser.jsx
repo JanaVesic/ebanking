@@ -7,7 +7,7 @@ const SupportUSer = () => {
     const [questions, setQuestions] = useState([]);
   const [answerToggle, setAnswerToggle] = useState(true);
   const [currentQuestion, setCurrentQuestion] = useState();
-  const [questionFilter, setQuestionFilter] = useState('all'); // Default filter
+  const [questionFilter, setQuestionFilter] = useState('all');
   const [currentPage, setCurrentPage] = useState(0)
   const [totalPages, setTotalPages] = useState();
 
@@ -37,7 +37,7 @@ const SupportUSer = () => {
       }
     };
     fetchData();
-  }, [questionFilter, currentPage]); // Trigger the effect when questionFilter changes
+  }, [questionFilter, currentPage]);
 
 
   const nextPage = () => {

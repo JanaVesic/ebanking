@@ -7,6 +7,7 @@ const Login = ({ setIsLoggedIn, setRole }) => {
   const navigate = useNavigate();
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [poruka, setPoruka] = useState('');
 
   useEffect(() => {
     localStorage.removeItem('token');
@@ -35,10 +36,11 @@ const Login = ({ setIsLoggedIn, setRole }) => {
       navigate('/account')
     }, (error) => {
       console.log(error);
-      alert(error)
-      // setPoruka("Neispravno korisnicko ime ili sifra!");
+      setPoruka(error.response.data.body.detail);
+      // alert(error.response.data.body.detail)
     })
   };
+
   return (
     <div className="login">
       <h2>Login</h2>
@@ -51,6 +53,7 @@ const Login = ({ setIsLoggedIn, setRole }) => {
           <input type="password" id="password" style={{width:'200px'}} onChange={(event) => setPassword(event.target.value)}/>
         </div>
         <button onClick={() => login()}>Submit</button>
+        <p style={{color: 'red'}}>{poruka}</p>
     </div>
   );
 };

@@ -11,6 +11,7 @@ const Register = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [role, setRole] = useState('KORISNIK');
+  const [poruka, setPoruka] = useState('');
 
   const roles = ['KORISNIK', 'ADMIN'];
   const register = () => {
@@ -36,8 +37,8 @@ const Register = () => {
       navigate('/createAccount')
     }, (error) => {
       console.log(error);
-      alert(error)
-      // setPoruka("Neispravno korisnicko ime ili sifra!");
+      // alert(error)
+      setPoruka(error.response.data);
     })
   };
 
@@ -92,6 +93,7 @@ const Register = () => {
           </div>
         </div>
         <button onClick={() => register()}>Register</button>
+        <p style={{color: 'red'}}>{poruka}</p>
     </div>
   );
 };
